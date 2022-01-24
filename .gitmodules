@@ -1,0 +1,3 @@
+[submodule "models"]
+  path = src/models
+  url = https://github.com/koinosexplorer/koinosexplorer-models
