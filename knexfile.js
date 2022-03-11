@@ -1,61 +1,28 @@
-require("dotenv").config();
-const pg = require("pg");
-// pg.defaults.ssl = true;
+// add env
+require('dotenv').config();
 
+// ref: https://devhints.io/knex
 module.exports = {
   development: {
-    client: "pg",
-    useNullAsDefault: true,
+    client: 'pg',
     connection: {
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME
-    },
-    migrations: {
-      directory: "./database/migrations"
-    },
-    seeds: {
-      directory: "./database/seeds"
+      host:     process.env.DB_HOST,
+      database: process.env.DB_DATABASE,
+      user:     process.env.DB_USER,
+      password: process.env.DB_PASSWORD
     }
   },
-
-  testing: {
-    client: "pg",
-    connection: {
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME
-    },
-    useNullAsDefault: true,
-    migrations: {
-      directory: "./database/migrations"
-    },
-    seeds: {
-      directory: "./database/seeds"
-    }
-  },
-
   production: {
-    client: "pg",
-    useNullAsDefault: true,
-
+    client: 'pg',
     connection: {
-      host: process.env.DB_HOST,
-      port: process.env.DB_PORT,
-      user: process.env.DB_USER,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME
+      host:     process.env.DB_HOST,
+      database: process.env.DB_DATABASE,
+      user:     process.env.DB_USER,
+      password: process.env.DB_PASSWORD
     },
-
-    migrations: {
-      directory: "./database/migrations"
-    },
-    seeds: {
-      directory: "./database/seeds"
+    pool: {
+      min: 2,
+      max: 10
     }
   }
-};
+}
