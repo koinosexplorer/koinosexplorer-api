@@ -39,12 +39,11 @@ router.use((req, res, next) => {
 */
 router.get('/block/latest', (req, res) => req.controller.getLasted(req, res));
 router.get('/block/:id', (req, res) => req.controller.getById(req, res));
-router.get('/block/address/:id', (req, res) => req.controller.getByIdAddress(req, res));
+router.get('/block/producer/:id', (req, res) => req.controller.getByIdProducer(req, res));
 
 router.get('/tx/latest', (req, res) => req.controller.getLasted(req, res));
 router.get('/tx/:id', (req, res) => req.controller.getById(req, res));
 router.get('/tx/address/:id', (req, res) => req.controller.getByIdAddress(req, res));
-
 
 
 module.exports = router;

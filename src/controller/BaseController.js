@@ -68,11 +68,6 @@ class BaseController {
       extendedQuery.orderBy(buildOpts.orderBy, 'desc')
     }
     
-    if(buildOpts.limit) {
-      extendedQuery.limit(buildOpts.limit)
-    } else {
-      extendedQuery.limit(20)
-    }
     return extendedQuery;
   }
 
@@ -82,11 +77,16 @@ class BaseController {
    */
    async getLasted(req, res, next) {
      try {
-      let result = await this.extendedQuery({ defaultEager: true, orderBy: this.orderBy })
+      let result = await this.extendedQuery({ defaultEager: true, orderBy: this.orderBy }).page(req.query.page, req.query.page_size)
       // response req
       res.status(200).json({
         success: true,
-        data: result,
+        data: result.results,
+        page: {
+          total: result.total,
+          page: req.query.page,
+          page_size: req.query.page_size
+        },
         message: null
       })
     } catch (error) {
