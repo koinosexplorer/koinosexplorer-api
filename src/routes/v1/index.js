@@ -9,6 +9,7 @@ const BlocksController = require('./../../controller/BlocksController').controll
 const TxController = require('./../../controller/TxController').controller;
 const ContractsController = require('./../../controller/ContractsController').controller;
 const TokensController = require('./../../controller/TokensController').controller;
+const GlobalsController = require('./../../controller/GlobalsController').controller;
 
 /**
  * Init Controller
@@ -18,6 +19,7 @@ const types = [
   { name: 'tx', controller: TxController },
   { name: 'contract', controller: ContractsController },
   { name: 'token', controller: TokensController },
+  { name: 'global', controller: GlobalsController }, 
 ]
 
 
@@ -39,6 +41,8 @@ router.use((req, res, next) => {
 /**
  * Routes
 */
+router.get('/global', (req, res) => req.controller.getFull(req, res))
+
 router.get('/block/latest', (req, res) => req.controller.getLasted(req, res));
 router.get('/block/:id', (req, res) => req.controller.getById(req, res));
 router.get('/block/producer/:id', (req, res) => req.controller.getByIdProducer(req, res));
@@ -47,6 +51,7 @@ router.get('/tx/latest', (req, res) => req.controller.getLasted(req, res));
 router.get('/tx/:id', (req, res) => req.controller.getById(req, res));
 router.get('/tx/address/:id', (req, res) => req.controller.getByIdAddress(req, res));
 
+router.get('/token/:id', (req, res) => req.controller.getById(req, res));
 router.get('/token/holders/:id', (req, res) => req.controller.getHolders(req, res));
 router.get('/token/transactions/:id', (req, res) => req.controller.getTransfersByAddress(req, res));
 
