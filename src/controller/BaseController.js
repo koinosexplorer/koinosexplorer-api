@@ -32,6 +32,9 @@ class BaseController {
   singleQuery(buildOpts = { query: {} }) {
     return this.model.query()
   }
+  relationSingleQuery(relation) {
+    return this.model.relatedQuery(relation);
+  }
 
   baseQuery(buildOpts = {}) {
     let baseQuery = this.singleQuery(buildOpts);

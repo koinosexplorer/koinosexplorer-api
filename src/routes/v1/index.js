@@ -8,6 +8,7 @@ const router = express.Router();
 const BlocksController = require('./../../controller/BlocksController').controller;
 const TxController = require('./../../controller/TxController').controller;
 const ContractsController = require('./../../controller/ContractsController').controller;
+const TokensController = require('./../../controller/TokensController').controller;
 
 /**
  * Init Controller
@@ -16,6 +17,7 @@ const types = [
   { name: 'block', controller: BlocksController },
   { name: 'tx', controller: TxController },
   { name: 'contract', controller: ContractsController },
+  { name: 'token', controller: TokensController },
 ]
 
 
@@ -44,6 +46,9 @@ router.get('/block/producer/:id', (req, res) => req.controller.getByIdProducer(r
 router.get('/tx/latest', (req, res) => req.controller.getLasted(req, res));
 router.get('/tx/:id', (req, res) => req.controller.getById(req, res));
 router.get('/tx/address/:id', (req, res) => req.controller.getByIdAddress(req, res));
+
+router.get('/token/holders/:id', (req, res) => req.controller.getHolders(req, res));
+router.get('/token/transactions/:id', (req, res) => req.controller.getTransfersByAddress(req, res));
 
 
 module.exports = router;
