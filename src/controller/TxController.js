@@ -12,7 +12,7 @@ class TxController extends BaseController {
     let addressId = req.params.id;
     try {
       let result = await this.extendedQuery({ defaultEager: true, orderBy: 'block_num' })
-        .where("payer", addressId)
+        .where("caller", addressId)
         .page(req.query.page, req.query.page_size)
       
       // response req

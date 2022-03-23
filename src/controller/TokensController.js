@@ -51,6 +51,7 @@ class TokensController extends BaseController {
       let result = await this.tokenTx.query()
         .where("from", addressId)
         .orWhere("to", addressId)
+        .orderBy("block_num", "desc")
         .page(req.query.page, req.query.page_size)
 
       // response req
