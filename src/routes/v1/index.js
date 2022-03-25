@@ -53,7 +53,8 @@ router.get('/tx/address/:id', (req, res) => req.controller.getByIdAddress(req, r
 
 router.get('/token/:id', (req, res) => req.controller.getById(req, res));
 router.get('/token/holders/:id', (req, res) => req.controller.getHolders(req, res));
-router.get('/token/transactions/:id', (req, res) => req.controller.getTransfersByAddress(req, res));
+router.get('/token/transactions/:id', (req, res) => req.controller.getLastTransactions(req, res));
+router.get('/token/transactions/address/:id', (req, res) => req.controller.getTransfersByAddress(req, res));
 
 
 module.exports = router;

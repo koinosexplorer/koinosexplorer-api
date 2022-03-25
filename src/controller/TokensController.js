@@ -74,6 +74,34 @@ class TokensController extends BaseController {
     }
   }
 
+  async getLastTransactions(req, res) {
+    let tokenId = req.params.id;
+
+    try {
+      let result = await this.tokenTx.query()
+        .where("token_id", tokenId)
+        .orderBy("block_num", "desc")
+        .page(req.query.page, req.query.page_size)
+
+      // response req
+      res.status(200).json({
+        success: true,
+        data: result.results,
+        page: {
+          total: result.total,
+          page: req.query.page,
+          page_size: req.query.page_size
+        },
+        message: null
+      })
+    } catch (error) {
+      res.status(400).json({
+        success: false,
+        message: "Error in address"
+      })
+    }
+  }
+
 }
 
 module.exports = {
